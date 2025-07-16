@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PowerStack Shop</title>
+</head>
+<body>
+  <h2>Product Search</h2>
+  <input type="text" id="name" placeholder="Search name">
+  <input type="text" id="category" placeholder="Category">
+  <button onclick="searchProducts()">Search</button>
+  <div id="results"></div>
+
+  <script>
+    async function searchProducts() {
+      const name = document.getElementById('name').value;
+      const category = document.getElementById('category').value;
+
+      const response = await fetch(`/api/products?name=${name}&category=${category}`);
+      const data = await response.json();
+
+      document.getElementById('results').innerHTML = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
